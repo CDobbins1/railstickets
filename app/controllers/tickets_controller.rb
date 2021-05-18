@@ -1,7 +1,7 @@
 class TicketsController < ApplicationController
   before_action :set_ticket, only: %i[ show edit update destroy ]
   before_action :authenticate_user!
-  before_action :correct_user, only: [ :edit, :update, :destroy ]
+  before_action :correct_user, only: [ :show, :edit, :update, :destroy ]
 
   # GET /tickets or /tickets.json
   def index
@@ -61,8 +61,7 @@ class TicketsController < ApplicationController
   end
 
   def correct_user
-    @ticket = current_user.tickets.find_by(id: params[:id])
-    redirect_to tickets_path, notice: "Not Authorized To Edit This Ticket" if @ticket.nil?
+    redirect_to tickets_path, notice: "Not Authorized To Edit This Ticket" if !current_user.admin? && current_user.tickets.find_by(id: params[:id]).nil?
   end
 
   private
