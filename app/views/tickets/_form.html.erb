@@ -28,6 +28,11 @@
         <%= form.text_field :status, class: "form-control", value: "Open", type: :hidden %>
       <% end %>
     </div>
+
+    <div class="field">
+      <%= form.number_field :user_id, id: :ticket_user_id, class: "form-control", value: current_user.id, type: :hidden %>
+    </div>
+
     <br/>
     <div class="actions">
       <%= form.submit class: "btn btn-success" %>
