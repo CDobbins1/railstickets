@@ -21,3 +21,5 @@ Admin users can:
 * View all tickets
 
 * Edit all tickets
+
+* Add public and admin-only comments to tickets
