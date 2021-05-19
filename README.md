@@ -1,24 +1,23 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+This is a simple ticket system web app made using Ruby on Rails.
 
-Things you may want to cover:
+Users must create an account to use the ticket system.
 
-* Ruby version
+Any user can make themself an admin by editing profile.
 
-* System dependencies
+Standard users can:
 
-* Configuration
+* Create tickets
 
-* Database creation
+* View owned tickets
 
-* Database initialization
+* Edit owned tickets (unless ticket was closed)
 
-* How to run the test suite
+Admin users can:
 
-* Services (job queues, cache servers, search engines, etc.)
+* Create tickets
 
-* Deployment instructions
+* View all tickets
 
-* ...
+* Edit all tickets
