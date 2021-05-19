@@ -21,7 +21,7 @@
     
     <br/>
     <% if current_user.admin? || @ticket.status != "Closed" %>
-      <%= link_to 'Edit', edit_ticket_path(@ticket), class: "btn btn-secondary" %>
+      <%= link_to 'Edit', edit_ticket_path(@ticket), class: "btn btn-primary" %>
     <% end %>
     <%= link_to 'Destroy', @ticket, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger" %>
     <%= link_to 'Back', tickets_path, class: "btn btn-dark" %>

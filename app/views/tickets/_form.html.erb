@@ -23,6 +23,7 @@
 
     <div class="field">
       <% if @ticket.persisted? %>
+        <%= form.label :status %><br />
         <%= form.select :status, ['Open', 'Closed'] %>
       <% else %>
         <%= form.text_field :status, class: "form-control", value: "Open", type: :hidden %>
@@ -40,7 +41,7 @@
       <div class="field">
         <%= form.text_field :comment, class: "form-control", placeholder: "Comments" %>
       </div>
-      
+
       <br />
       <div class="field">
         <%= form.text_field :admin_comment, class: "form-control", placeholder: "Admin Comments" %>
