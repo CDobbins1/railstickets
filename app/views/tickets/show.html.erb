@@ -5,22 +5,24 @@
       <strong>Ticket ID:</strong> <%= @ticket.id %><br />
       <strong>Status:</strong> <%= @ticket.status %>
     </p>
-    <p><%= @ticket.description %></p>
+    <p class="lead"><%= @ticket.description %></p>
     <div class="border">
       <p>
         <b>Comments</b><br />
-        comments are here
+        <%= @ticket.comment %>
       </p>
       <% if current_user.admin? %>
         <p>
           <b>Admin Comments</b><br />
-          admin comments are here
+          <%= @ticket.admin_comment %>
         </p>
       <% end %>
     </div>
     
     <br/>
-    <%= link_to 'Edit', edit_ticket_path(@ticket), class: "btn btn-secondary" %>
+    <% if current_user.admin? || @ticket.status != "Closed" %>
+      <%= link_to 'Edit', edit_ticket_path(@ticket), class: "btn btn-secondary" %>
+    <% end %>
     <%= link_to 'Destroy', @ticket, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger" %>
     <%= link_to 'Back', tickets_path, class: "btn btn-dark" %>
   </div>

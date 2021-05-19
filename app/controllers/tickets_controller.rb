@@ -2,6 +2,7 @@ class TicketsController < ApplicationController
   before_action :set_ticket, only: %i[ show edit update destroy ]
   before_action :authenticate_user!
   before_action :correct_user, only: [ :show, :edit, :update, :destroy ]
+  before_action :verify_can_edit, only: [ :edit, :update ]
 
   # GET /tickets or /tickets.json
   def index
@@ -64,6 +65,10 @@ class TicketsController < ApplicationController
     redirect_to tickets_path, notice: "Not Authorized To Edit This Ticket" if !current_user.admin? && current_user.tickets.find_by(id: params[:id]).nil?
   end
 
+  def verify_can_edit
+    redirect_to @ticket, notice: "Not Authorized To Edit This Ticket" if !current_user.admin? && @ticket.status == "Closed"
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_ticket
@@ -72,6 +77,6 @@ class TicketsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def ticket_params
-      params.require(:ticket).permit(:title, :description, :status, :user_id)
+      params.require(:ticket).permit(:title, :description, :status, :comment, :admin_comment, :user_id)
     end
 end
